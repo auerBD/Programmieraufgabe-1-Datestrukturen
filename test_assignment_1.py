@@ -1,0 +1,43 @@
+from assignment_1 import MyLinkedList, MySinglyLinkedList, compute
+
+
+if __name__ == "__main__":
+    print("Testing MySinglyLinkedList")
+    sll = MySinglyLinkedList()
+    sll.add_first(10)
+    print("1. add_first(10) -> done")
+    print(f"2. size() -> {sll.size()}")
+    print(f"3. is_empty() -> {sll.is_empty()}")
+    print(f"4. first() -> {sll.first()}")
+    print(f"5. last() -> {sll.last()}")
+    sll.add_last(20)
+    print("6. add_last(20) -> done")
+    print(f"7. remove_first() -> {sll.remove_first()}")
+    print(f"8. first() -> {sll.first()}")
+    print(f"9. last() -> {sll.last()}")
+    print(f"10. size() -> {sll.size()}")
+
+    print()
+    print("Testing MyLinkedList")
+    dll = MyLinkedList()
+    dll.add_last(5)
+    print("1. add_last(5) -> done")
+    print(f"2. size() -> {dll.size()}")
+    print(f"3. is_empty() -> {dll.is_empty()}")
+    print(f"4. first() -> {dll.first()}")
+    print(f"5. last() -> {dll.last()}")
+    dll.add_first(2)
+    print("6. add_first(2) -> done")
+    print(f"7. remove_last() -> {dll.remove_last()}")
+    print(f"8. first() -> {dll.first()}")
+    print(f"9. remove_first() -> {dll.remove_first()}")
+    print(f"10. size() -> {dll.size()}")
+
+    print()
+    print("Testing compute")
+    print(f"1. compute('3 4 +') -> {compute('3 4 +')}")
+    print(f"2. compute('10 2 8 * + 3 -') -> {compute('10 2 8 * + 3 -')}")
+    print(f"3. compute('9 3 / 2 +') -> {compute('9 3 / 2 +')}")
+    print(f"4. compute('5 1 2 + 4 * + 3 -') -> {compute('5 1 2 + 4 * + 3 -')}")
+    print(f"5. compute('15 7 1 1 + - / 3 * 2 1 1 + + -') -> {compute('15 7 1 1 + - / 3 * 2 1 1 + + -')}")
+
