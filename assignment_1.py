@@ -153,42 +153,39 @@ class MyLinkedList:
 
 #----------------------------------#
 
-
-
 def compute(postfix_expression):
-    """
-    Evaluate a postfix (Reverse Polish Notation) arithmetic expression.
-
-    Args:
-        postfix_expression: A string containing integers and operators (+, -, *, /)
-                           separated by whitespaces. Example: "3 4 + 2 * 7 /"
-
-    Returns:
-        The computed result as an int or float.
-
-    Raises:
-        ValueError: If the expression is invalid or malformed.
-        ZeroDivisionError: If division by zero is attempted.
-    """
-    # Create an appropriate stack
-    stack = None
-
-    # Split the expression into tokens
+    stack = MySinglyLinkedList()
     tokens = postfix_expression.split()
-
+ 
     if not tokens:
-        raise ValueError("Empty expression")
-
+        raise ValueError("Leerer Ausdruck")
+ 
     for token in tokens:
-        # Check if token is an operator
-        if token in ['+', '-', '*', '/']:
-            pass
-            # ...
+        if token in ('+', '-', '*', '/'):
+            if stack.size() < 2:
+                raise ValueError(f"Zu wenige Operanden für Operator '{token}'")
+            b = stack.remove_first()
+            a = stack.remove_first()
+            if token == '+':
+                result = a + b
+            elif token == '-':
+                result = a - b
+            elif token == '*':
+                result = a * b
+            elif token == '/':
+                if b == 0:
+                    raise ZeroDivisionError("Division durch null")
+                result = a / b
+            stack.add_first(result)
         else:
-            pass
-            # ...
-
-    #...
+            try:
+                stack.add_first(int(token))
+            except ValueError:
+                raise ValueError(f"Ungültiges Token: '{token}'")
+ 
+    if stack.size() != 1:
+        raise ValueError("Ungültiger Ausdruck – zu viele Operanden übrig")
+ 
     return stack.first()
 
 if __name__ == "__main__":
