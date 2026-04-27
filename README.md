@@ -67,10 +67,10 @@ Evaluates expressions written in Reverse Polish Notation using a stack based on 
 
 ### Supported operators
 
-Addition +
-Subtraction -
-Multiplication *
-Division /  
+- Addition +
+- Subtraction -
+- Multiplication *
+- Division /  
 
 ---
 
