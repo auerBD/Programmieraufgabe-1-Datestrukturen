@@ -1,124 +1,131 @@
-# MySinglyLinkedList – Einfach verkettete Liste in Python
+# 📚 Linked List Implementations & Postfix Expression Evaluator
 
-## 📌 Beschreibung
-
-Dieses Projekt implementiert eine **einfach verkettete Liste (Singly Linked List)** in Python.
-Die Liste speichert Elemente in sogenannten **Knoten (Nodes)**, die jeweils auf ihren Nachfolger zeigen.
-
-Zusätzlich wird ein **Tail-Zeiger** verwendet, um Operationen am Listenende effizient zu machen.
+This project contains implementations of a singly linked list, a doubly linked list, and a postfix (Reverse Polish Notation) expression evaluator built using a custom stack based on a singly linked list.
 
 ---
 
-## 🧠 Datenstruktur
+## 📦 Overview
 
-Jeder Knoten besteht aus:
+The project includes:
 
-* `element` → gespeicherter Wert
-* `next` → Verweis auf den nächsten Knoten
-
-Die Liste verwaltet:
-
-* `_head` → erstes Element
-* `_tail` → letztes Element
-* `_size` → Anzahl der Elemente
+- MySinglyLinkedList → Singly linked list with head & tail optimization  
+- MyLinkedList → Doubly linked list implementation  
+- compute(postfix_expression) → Postfix expression evaluator (stack-based)
 
 ---
 
-## ⚙️ Implementierte Methoden
+## 🔗 Singly Linked List (MySinglyLinkedList)
 
-### Basisfunktionen
+A singly linked list optimized with head and tail pointers for efficient operations.
 
-| Methode      | Beschreibung                    | Laufzeit |
-| ------------ | ------------------------------- | -------- |
-| `size()`     | Gibt Anzahl der Elemente zurück | O(1)     |
-| `is_empty()` | Prüft, ob die Liste leer ist    | O(1)     |
-| `first()`    | Gibt das erste Element zurück   | O(1)     |
+### Features
 
----
+- _head → first element  
+- _tail → last element  
+- _size → number of elements  
 
-### Operationen am Anfang
+### Operations
 
-| Methode          | Beschreibung               | Laufzeit |
-| ---------------- | -------------------------- | -------- |
-| `add_first(e)`   | Fügt Element am Anfang ein | O(1)     |
-| `remove_first()` | Entfernt erstes Element    | O(1)     |
-
----
-
-### Operationen am Ende
-
-| Methode       | Beschreibung                | Laufzeit |
-| ------------- | --------------------------- | -------- |
-| `last()`      | Gibt letztes Element zurück | O(1)     |
-| `add_last(e)` | Fügt Element am Ende ein    | O(1)     |
+add_first(e): Insert at front → O(1)  
+add_last(e): Insert at end → O(1)  
+remove_first(): Remove first → O(1)  
+first(): Get first element → O(1)  
+last(): Get last element → O(1)  
+size(): Return size → O(1)  
+is_empty(): Check if empty → O(1)  
 
 ---
 
-## 🚀 Besonderheit: Tail-Zeiger
+## 🔗 Doubly Linked List (MyLinkedList)
 
-Durch die Verwendung von `_tail` können Operationen am Ende der Liste effizient ausgeführt werden.
+A doubly linked list allowing traversal in both directions.
 
-Ohne Tail:
+Each node contains:
 
-* `add_last()` → O(n)
-* `last()` → O(n)
+- data  
+- next  
+- prev  
 
-Mit Tail:
+### Operations
 
-* `add_last()` → O(1)
-* `last()` → O(1)
-
----
-
-## 🧪 Beispiel
-
-```python
-lst = MySinglyLinkedList()
-
-lst.add_first(10)
-lst.add_last(20)
-lst.add_first(5)
-
-print(lst.first())  # 5
-print(lst.last())   # 20
-print(lst.size())   # 3
-
-lst.remove_first()
-print(lst.first())  # 10
-```
+add_first(e): O(1)  
+add_last(e): O(1)  
+remove_first(): O(1)  
+remove_last(): O(1)  
+first(): O(1)  
+last(): O(1)  
+size(): O(1)  
+is_empty(): O(1)  
 
 ---
 
-## ⚠️ Wichtige Spezialfälle
+## 🧮 Postfix Expression Evaluator
 
-* Wenn die Liste leer ist:
+### Function: compute(postfix_expression)
 
-  * `_head = None`
-  * `_tail = None`
+Evaluates expressions written in Reverse Polish Notation using a stack based on MySinglyLinkedList.
 
-* Beim ersten Einfügen:
+### Supported operators
 
-  * `head` und `tail` zeigen auf dasselbe Element
-
-* Beim Entfernen des letzten Elements:
-
-  * `_tail` muss wieder auf `None` gesetzt werden
++  
+-  
+*  
+/  
 
 ---
 
-## 🎯 Fazit
+### Algorithm
 
-Diese Implementierung zeigt eine effiziente verkettete Liste mit:
-
-* konstanten Laufzeiten für Einfügen und Zugriff
-* sauberer Speicherstruktur
-* optimaler Nutzung eines zusätzlichen Tail-Zeigers
+1. Split expression into tokens  
+2. Push numbers onto stack  
+3. When operator appears:
+   - Pop two values  
+   - Apply operation  
+   - Push result  
+4. Final stack must contain exactly one value  
 
 ---
 
-## 📚 Lernziel
+## ⚠️ Error Handling
 
-* Verständnis von verketteten Listen
-* Zeigerlogik (`next`)
-* Laufzeitanalyse (Big-O)
-* Umgang mit Spezialfällen in Datenstrukturen
+Raises errors for:
+
+- Empty expression  
+- Invalid token  
+- Not enough operands  
+- Division by zero  
+- Remaining unused operands  
+
+---
+
+## ▶️ Example
+
+3 4 + 2 * 7 / = 2.0  
+5 1 2 + 4 * + 3 - = 14  
+
+---
+
+## ▶️ Run
+
+python your_file.py
+
+---
+
+## 📌 Notes
+
+- Stack uses singly linked list (add_first / remove_first)  
+- Tail pointer ensures O(1) append  
+- Doubly linked list supports bidirectional traversal  
+
+---
+
+## 👨‍💻 Authors
+Kevin Youssef
+Lukas Url
+Bence Auer
+
+Data structures exercise focusing on:
+
+- Linked lists  
+- Stack implementation  
+- Postfix evaluation  
